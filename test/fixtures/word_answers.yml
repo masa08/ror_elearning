@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  word_id: 1
+  collect: false
+
+two:
+  content: MyText
+  word_id: 1
+  collect: false
