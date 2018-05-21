@@ -10,40 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180519050720) do
+ActiveRecord::Schema.define(version: 20180520104026) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lesson_words", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer "lesson_id"
-    t.integer "choice_id"
-    t.integer "word_id"
+  create_table "lesson_words", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "lesson_id"
+    t.bigint "word_answer_id"
+    t.bigint "word_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_lesson_words_on_lesson_id"
+    t.index ["word_answer_id"], name: "index_lesson_words_on_word_answer_id"
+    t.index ["word_id"], name: "index_lesson_words_on_word_id"
   end
 
-  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer "user_id"
-    t.integer "category_id"
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_lessons_on_category_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
   end
 
-  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer "followed_id"
-    t.integer "follower_id"
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "followed_id"
+    t.bigint "follower_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "image"
+    t.string "image"
     t.string "email"
     t.string "password"
     t.boolean "admin"
@@ -51,19 +58,30 @@ ActiveRecord::Schema.define(version: 20180519050720) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "word_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "word_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
-    t.integer "word_id"
-    t.boolean "collect"
+    t.bigint "word_id"
+    t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["word_id"], name: "index_word_answers_on_word_id"
   end
 
-  create_table "words", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "words", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_words_on_category_id"
   end
 
+  add_foreign_key "lesson_words", "lessons"
+  add_foreign_key "lesson_words", "word_answers"
+  add_foreign_key "lesson_words", "words"
+  add_foreign_key "lessons", "categories"
+  add_foreign_key "lessons", "users"
+  add_foreign_key "relationships", "users", column: "followed_id"
+  add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "word_answers", "words"
+  add_foreign_key "words", "categories"
 end

@@ -1,9 +1,9 @@
 class CreateLessonWords < ActiveRecord::Migration[5.1]
   def change
     create_table :lesson_words do |t|
-      t.integer :lesson_id
-      t.integer :choice_id
-      t.integer :word_id
+      t.references :lesson, foreign_key: true
+      t.references :word_answer, foreign_key: true
+      t.references :word, foreign_key: true
 
       t.timestamps
     end
