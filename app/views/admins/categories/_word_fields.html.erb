@@ -1,0 +1,7 @@
+<div class="field">
+  <%= f.label 'Word' %><br>
+  <%= f.text_field :content, :class => 'form-control', :placeholder => 'Add a word' %>
+  <%= fields_for :word_answers do |ii| %>
+    <%= render 'admins/categories/word_answer_fields', f: ii %>
+  <% end %>
+</div>

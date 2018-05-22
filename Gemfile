@@ -39,6 +39,13 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  # pry
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  # hirb
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
 
 group :development do
@@ -52,3 +59,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Bootstrap
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+
+# field動的生成
+gem 'cocoon'
