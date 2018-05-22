@@ -1,0 +1,52 @@
+
+<%= render 'admins/header' %>
+
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'admins/sidebar' %>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <h1><%= @category.title %></h1>
+      <div class="button">
+        <%= link_to 'Edit', edit_admins_category_path, class: "btn-primary btn" %>
+        <%= link_to 'Destroy', admins_category_path, method: :delete, class: "btn-danger btn", data: {confirm: "Are you sure?"} %>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Words</th>
+              <th>choices</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% i = 1 %>
+
+            <!-- Words -->
+            <% @category.words.each do |word| %>
+            <tr>
+              <td><%= i %></td>
+              <% i += 1 %>
+              <td><%= word.content %></td>
+              <td>
+                <% ii = 1 %>
+
+                <!-- choices -->
+                <% word.word_answers.each do |answer| %>
+                  <% if ii > 4 %>
+                    <% ii = 1 %>
+                  <% end %>
+                  <%= ii %>：<%= answer.content %><br>
+                  <% ii += 1 %>
+                <% end %>
+                
+              </td>
+            </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
