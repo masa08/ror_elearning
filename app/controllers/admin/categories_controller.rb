@@ -49,20 +49,13 @@ class Admin::CategoriesController < ApplicationController
 
   private
   def categories_params
-    params.require(:category).permit(:title,
-                             :description,
-                             words_attributes: [:id,
-                                                :content,
-                                                :category_id,
-                                                :_destroy,
-                                                word_answers_attributes: [:id,
-                                                                          :content,
-                                                                          :word_id,
-                                                                          :correct,
-                                                                          :_destroy
-                                                                         ]
-                                               ]
-                             )
+    word_answers_attributes = [:id, :content, :word_id, :correct, :_destroy]
+    words_attributes = [:id,
+                        :content ,
+                        :category_id,
+                        :_destroy,
+                        word_answers_attributes: word_answers_attributes]
+    params.require(:category).permit(:title, :description, words_attributes: words_attributes)
   end
 
 end
