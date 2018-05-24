@@ -1,4 +1,8 @@
-class Admins::CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
+
+  def index
+    @categories = Category.all
+  end
 
   def show
     @category = Category.find(params[:id])
@@ -14,7 +18,7 @@ class Admins::CategoriesController < ApplicationController
     @category = Category.new(categories_params)
 
     if @category.save
-      redirect_to admins_category_list_path
+      redirect_to admin_categories_path
     else
       render 'new'
     end
@@ -29,7 +33,7 @@ class Admins::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update(categories_params)
-      redirect_to admins_category_list_path
+      redirect_to admin_categories_path
     else
       render 'edit'
     end
@@ -39,7 +43,7 @@ class Admins::CategoriesController < ApplicationController
   def destroy
     category = Category.find( params[:id])
     category.destroy
-    redirect_to admins_category_list_path
+    redirect_to admin_categories_path
   end
 
 

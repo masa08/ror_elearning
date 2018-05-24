@@ -1,0 +1,11 @@
+<div class="field">
+    <%= f.label 'Word' %><br>
+    <%= f.text_field :content, :class => 'form-control', :placeholder => 'Add a word' %>
+    <%= f.fields_for :word_answers do |ii| %>
+        <%= render 'admin/categories/word_answer_fields', f: ii %>
+    <% end %>
+    <div class="field">
+        <%= link_to_add_association 'Add answers', f, :word_answers %>
+    </div>
+</div>
+<hr>

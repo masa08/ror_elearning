@@ -1,0 +1,42 @@
+<%= render 'admin/header' %>
+
+<div class="container-fluid">
+    <div class="row">
+        <%= render 'admin/sidebar' %>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+              <h2>Create Category!</h2>
+              <% if @category.errors.any? %>
+                  <div id="error_explanation">
+                      <div class="alert alert-danger">
+                          The form contains <%= pluralize(@category.errors.count, "error") %>.
+                      </div>
+                      <ul>
+                      <% @category.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                      </ul>
+                  </div>
+              <% end %>
+
+              <!-- Create categories -->
+              <%= form_for([:admin, @category]) do |f| %>
+                  <p>Category Name</p><%= f.text_field :title, :class => 'form-control', :placeholder => 'Please write category name' %>
+                  <p>Description</p><%= f.text_area :description, :class => 'form-control', :placeholder => 'Please write category description' %>
+
+                  <!-- Create Words -->
+                  <%= f.fields_for :words do |i| %>
+                      <%= render 'admin/categories/word_fields', f: i %>
+                  <% end %>
+
+                  <!-- Add Words -->
+                  <div class="field">
+                      <%= link_to_add_association 'Add words', f, :words %>
+                  </div>
+
+                  <!-- Submit -->
+                  <%= f.submit "Create Category", :class => 'btn btn-primary center-block' %>
+              <% end -%>
+        </main>
+    </div>
+</div>
