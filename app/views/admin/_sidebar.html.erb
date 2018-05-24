@@ -1,0 +1,16 @@
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <%= link_to "Categories", admin_categories_path %>
+            </li>
+                <%= link_to "Add Category",  new_admin_category_path, class: "btn btn-primary" %>
+            <li class="nav-item">
+                <%= link_to "Words", admin_words_path %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Word_answers", admin_word_answers_path %>
+            </li>
+        </ul>
+    </div>
+</nav>

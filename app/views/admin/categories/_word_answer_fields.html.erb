@@ -1,0 +1,5 @@
+<div class="field">
+    <%= f.label 'Word_answers' %><br>
+    <%= f.text_field :content, :class => 'form-control', :placeholder => 'Add a answer' %>
+    <p>Is this correct answer?<%= f.check_box :correct, { class:"custom-checkbox" } %></p>
+</div>
