@@ -1,6 +1,17 @@
-// Place all the styles related to the Admin controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// admin_header
+.admin_header{
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(120,255,230,0.5);
+  height: 50px;
+  margin: 0;
+}
+.admin_nav{
+  height: 50px;
+}
+
+// 
 .container-fluid{
-  padding-top: 50px;
+  padding-top: 70px;
 }
