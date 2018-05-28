@@ -61,7 +61,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Bootstrap
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
 # field動的生成
