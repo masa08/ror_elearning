@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20180520104026) do
     t.string "image"
     t.string "email"
     t.string "password"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

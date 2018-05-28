@@ -66,3 +66,6 @@ gem 'jquery-rails'
 
 # field動的生成
 gem 'cocoon'
+
+# carrierwave
+gem 'carrierwave'
