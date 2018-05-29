@@ -69,3 +69,6 @@ gem 'cocoon'
 
 # carrierwave
 gem 'carrierwave'
+
+# bcrypt
+gem 'bcrypt',         '3.1.11'
