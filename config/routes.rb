@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
-  resources :top, only: [:index]
+  # About top
   root 'top#index'
+
+  # About admins
   namespace :admin do
     resources :categories
     resources :words, only: [:index]
     resources :word_answers, only: [:index]
-    end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  end
+
+  # About users
+  resources :users, except: [:new]
+
+  # SignUp
+  get    '/signup',  to: 'users#new'
+
+  # SignIn
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 end

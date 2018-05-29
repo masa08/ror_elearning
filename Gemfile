@@ -66,3 +66,9 @@ gem 'jquery-rails'
 
 # field動的生成
 gem 'cocoon'
+
+# carrierwave
+gem 'carrierwave'
+
+# bcrypt
+gem 'bcrypt',         '3.1.11'

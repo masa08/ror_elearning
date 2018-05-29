@@ -1,0 +1,15 @@
+<%= render 'layouts/header' %>
+<div class="container pt50">
+    <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <div class="row">
+        <%= @user.name  %>
+        <div class="thumbnail">
+            <%= image_tag @user.image.url, style: "height:300px; width:300px;" %>
+        </div>
+        <%= @user.email  %>
+    </div>
+</div>
+
+<%= render 'layouts/footer' %>
