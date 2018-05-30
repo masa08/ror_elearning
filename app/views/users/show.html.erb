@@ -4,12 +4,47 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
     <div class="row">
-        <%= @user.name  %>
-        <div class="thumbnail">
-            <%= image_tag @user.image.url, style: "height:300px; width:300px;" %>
+        <div class="col-lg-4">
+            <div class="user_details">
+                <div class="thumbnail">
+                    <%= image_tag @user.image.url, class: "user_image" %>
+                </div>
+                <p>Name:<%= @user.name  %></p>
+                <p>Email:<%= @user.email  %></p>
+                <p>lessons:4</p>
+                <p>Words_Numbers:125</p>
+                <%= link_to 'Edit', edit_user_path(current_user), class: "btn btn-outline-secondary" %>
+            </div>
         </div>
-        <%= @user.email  %>
+        <div class="col-lg-8">
+            <div class="user_activity">
+                <h2 class="text-center wf-mplus1p mb-4 gradient-border font-weight-light">Activities</h2>
+                <div class="col-md-12">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-12">
+                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                         <div class="card-body">
+                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                             <div class="d-flex justify-content-between align-items-center">
+                                 <div class="btn-group">
+                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                 </div>
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <%= render 'layouts/footer' %>
