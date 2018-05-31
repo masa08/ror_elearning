@@ -72,3 +72,11 @@ gem 'carrierwave'
 
 # bcrypt
 gem 'bcrypt',         '3.1.11'
+
+# for test data
+gem 'faker',                   '1.7.3'
+gem 'forgery'
+
+# for pagination
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
