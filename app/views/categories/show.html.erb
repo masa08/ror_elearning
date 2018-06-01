@@ -1,0 +1,16 @@
+<%= render 'layouts/header' %>
+<div class="container pt50">
+<%= @category.title %>
+<%= @category.description %>
+<br>
+<% @category.words.each do |word| %>
+    <%= word.content %>
+    <br>
+    <% word.word_answers.each do |answer| %>
+      <%= answer.content %>
+    <% end %>
+    <br>
+<% end %>
+
+</div>
+<%= render 'layouts/footer' %>
