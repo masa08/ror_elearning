@@ -1,4 +1,7 @@
 <%= render 'layouts/header' %>
+<div class="user_main_image">
+  <h1 class="user_title">DashBoard</h1>
+</div>
 <div class="container pt50">
     <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>

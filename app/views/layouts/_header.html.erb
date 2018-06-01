@@ -10,17 +10,20 @@
                    <%= link_to "Users", users_path, class: "nav-link" %>
                </li>
                <li class="nav-item">
-                   <%= link_to "MyPage", user_path(current_user), class: "nav-link" %>
+                   <%= link_to "DashBoard", user_path(current_user), class: "nav-link" %>
                </li>
                <li class="nav-item">
-                   <%= link_to "Log out", logout_path, class: "nav-link", method: :delete %>
+                   <%= link_to "Lessons", categories_path, class: "nav-link" %>
+               </li>
+               <li class="nav-item">
+                   <%= link_to "LogOut", logout_path, class: "nav-link", method: :delete,  data: {confirm: "Are you sure?"} %>
                </li>
            <% else %>
                <li class="nav-item">
-                   <%= link_to 'Sign Up', signup_path, class: "nav-link" %>
+                   <%= link_to 'SignUp', signup_path, class: "nav-link" %>
                </li>
                <li class="nav-item">
-                   <%= link_to 'Sign In', login_path, class: "nav-link" %>
+                   <%= link_to 'SignIn', login_path, class: "nav-link" %>
                </li>
            <% end %>
        </ul>

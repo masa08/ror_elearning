@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :word_answers, only: [:index]
   end
 
+  # About categories
+  resources :categories, only: [:index, :show]
+
   # About users
   resources :users, except: [:new]
 
