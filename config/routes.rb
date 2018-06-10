@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   # About admins
   namespace :admin do
-    resources :categories
-    resources :words, only: [:index]
-    resources :word_answers, only: [:index]
+      resources :categories
+      resources :words, only: [:index]
+      resources :word_answers, only: [:index]
   end
 
   # About categories
@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   # About users
   resources :users, except: [:new]
+
+  # About lessons
+  resources :lessons, only: [:show, :create] do
+      resources :lesson_words, only: [:show, :create]
+  end
 
   # SignUp
   get    '/signup',  to: 'users#new'
