@@ -1,0 +1,21 @@
+<%= render 'layouts/header' %>
+<div class="container pt50">
+    <div class="row">
+        <h2><%= @word.content %></h2>
+        <%= form_for :word_answers do |f| %>
+            <% @word.word_answers.each do |answer| %>
+                <% if @word.id != @word.category.words.last.id %>
+                    <% next_word = @lesson_word.id + 1 %>
+                    <%= link_to lesson_lesson_word_path(@lesson.id, next_word, answer_id: answer.id), class: "btn btn-info" do %>
+                        <%= answer.content %>
+                    <% end %>
+                <% else %>
+                    <%= link_to lesson_path(@lesson.id, answer_id: answer.id, lesson_word_id: @lesson_word.id), class: "btn btn-info" do %>
+                        <%= answer.content %>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+<%= render 'layouts/footer' %>
