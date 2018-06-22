@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'words/index'
+
   # About top
   root 'top#index'
 
@@ -13,12 +15,21 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
 
   # About users
-  resources :users, except: [:new]
+  resources :users, except: [:new] do
+    member do
+      get :following, :followers
+    end
+  end
+  # About Relationship
+  resources :relationships, only: [:create, :destroy]
 
   # About lessons
-  resources :lessons, only: [:show, :create] do
+  resources :lessons, only: [:index, :show, :create] do
       resources :lesson_words, only: [:show, :create]
   end
+
+  # About words
+  resources :words, only: [:index]
 
   # SignUp
   get    '/signup',  to: 'users#new'
