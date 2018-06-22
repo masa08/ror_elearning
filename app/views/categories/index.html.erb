@@ -11,9 +11,14 @@
                   <div class="card-body">
                       <p class="card-text">Title:<%= category.title  %></p>
                       <p><%= category.description  %></p>
+                      <p>word_numbers: <%= category.words.count %></p>
                       <div class="d-flex justify-content-between align-items-center">
                           <div class="btn-group m0">
-                              <%= link_to "Start", lessons_path(category_id: category.id), class: "btn btn-outline-info", method: :POST %>
+                              <% if category.lessons.where(user_id: current_user.id).any? %>
+                                  <%= link_to "Result", lesson_path(category.lessons.find_by(user_id: current_user.id).id), class: "btn btn-outline-secondary" %>
+                              <% else %>
+                                  <%= link_to "Start", lessons_path(category_id: category.id), class: "btn btn-outline-info", method: :POST %>
+                              <% end %>
                           </div>
                       </div>
                    </div>
