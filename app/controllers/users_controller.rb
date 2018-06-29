@@ -1,12 +1,27 @@
 class UsersController < ApplicationController
   def index
     @user = User.find(current_user.id)
-    # @users = User.all
     @users = User.paginate(page: params[:page], per_page: 10)
+    @lesson_users = Lesson.where(user_id: current_user.id)
+    @word_count = 0
+    @lesson_users.each do |lesson|
+      words = lesson.category.words
+      @word_count += words.count
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @lessons_learned = Lesson.where(user_id: @user.id)
+    @lesson_users = Lesson.where(user_id: @user.id)
+                          .paginate(page: params[:page], per_page: 10)
+    # 習得言語数の所得
+    @word_count = 0
+    @lesson_users.each do |lesson|
+      words = lesson.category.words
+      @word_count += words.count
+    end
+    @category = Category.all
   end
 
   def new
@@ -35,6 +50,24 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def show_follower
+  end
+
+  def show_following
+  end
+
+  def following
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_following'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follower'
   end
 
   private

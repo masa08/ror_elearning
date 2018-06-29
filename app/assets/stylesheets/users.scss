@@ -43,7 +43,7 @@
   max-width:150px;
 }
 .card-body{
-  height: 150px;
+  // height: 150px;
 }
 
 .user_all_main_image{
@@ -72,4 +72,19 @@
     width: 20vw;
     margin: 15px auto auto;
     background: linear-gradient(75deg, rgb(103, 255, 255),rgb(40,40,128));
+}
+
+// btn
+.follow_btn, .edit_btn{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.left{
+  float: left;
+}
+.user_image_small{
+  height:100px;
+  width:100px;
+  border-radius: 50%;
 }
