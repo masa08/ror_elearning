@@ -1,7 +1,4 @@
 <%= render 'layouts/header' %>
-<div class="user_all_main_image">
-  <h1 class="user_all_title">Users</h1>
-</div>
 <div class="container pt50">
     <div class="row">
       <div class="col-lg-4">
@@ -11,13 +8,12 @@
               </div>
               <p>Name: <%= @user.name  %></p>
               <p>Email: <%= @user.email  %></p>
-              <p>lessons: <%= @lesson_users.count %></p>
-              <p>Words_Numbers: <%= @word_count %></p>
+
           </div>
       </div>
 
       <div class="user_activity col-lg-8 text-center">
-          <h2 class="text-center wf-mplus1p mb-4 gradient-border font-weight-light">Users</h2>
+          <h2 class="text-center wf-mplus1p mb-4 gradient-border font-weight-light">Followers</h2>
           <% @users.each do |user| %>
               <%= link_to user_path(user.id) do %>
               <div class="card flex-md-row mb-4 box-shadow h-md-250 card-height">
@@ -32,9 +28,6 @@
           <% end %>
           <%= will_paginate(:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer)  %>
       </div>
-
-
-
     </div>
 </div>
 <%= render 'layouts/footer' %>
