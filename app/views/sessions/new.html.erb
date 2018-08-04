@@ -15,6 +15,12 @@
                     <%= f.label :password %>
                     <%= f.password_field :password, :class => 'form-control', :placeholder => 'Please write your password' %>
                 </div>
+
+                <%= f.label :remenber_me, class: "checkbox inline" do %>
+                  <%= f.check_box :remenber_me %>
+                  <span>Remember me on this computer</span>
+                <% end %>
+
                 <%= f.submit "Login", class: "btn btn-lg btn-primary btn-block" %>
             <% end %>
         </div>
