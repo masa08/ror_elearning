@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 20180803002923) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "test", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "image"
