@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'words/index'
-
   # About top
   root 'top#index'
 
