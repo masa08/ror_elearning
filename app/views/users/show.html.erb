@@ -12,12 +12,12 @@
                 <div class="thumbnail">
                     <%= image_tag @user.image.url, class: "user_image" %>
                 </div>
-                <p>Name: <%= @user.name  %></p>
-                <p>Email: <%= @user.email  %></p>
+                <p class="sidebar_content" >Name: <%= @user.name  %></p>
+                <p class="sidebar_content" >Email: <%= @user.email  %></p>
                 <%= link_to lessons_path(user_id: @user.id) do %>
-                    <p>lessons: <%= @lesson_users.count %></p>
+                    <p class="sidebar_content" >lessons: <%= @lesson_users.count %></p>
                 <% end %>
-                <p>Words_Numbers: <%= @word_count %></p>
+                <p class="sidebar_content_last">Words_Numbers: <%= @word_count %></p>
                 <%= render 'users/stats' %>
                 <% if @user.id == current_user.id %>
                     <%= link_to 'Profile Edit', edit_user_path(current_user), class: "btn btn-outline-secondary edit_btn" %>
