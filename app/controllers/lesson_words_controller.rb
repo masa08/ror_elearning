@@ -1,19 +1,27 @@
 class LessonWordsController < ApplicationController
-  def show
-    # レッスンを取得
+  def new
     @lesson = Lesson.find(params[:lesson_id])
-    # いちばん最初のlesson_wordsを取得。
-    @lesson_word = LessonWord.find(params[:id])
-    # レッスンワードに紐づいたワードを取得
-    @word = @lesson_word.word
-    if params[:answer_id]
-      lesson = params[:id].to_i - 1
-      @lesson_word_second = LessonWord.find(lesson)
-      @word_answer_id = @lesson_word_second.update(word_answer_id: params[:answer_id])
+    @word = (@lesson.category.words - @lesson.words).try(:first)
+
+    unless @word.nil?
+      @lesson_word = @lesson.lesson_words.build(word: @word)
+    else
+      redirect_to @lesson
     end
-   end
+  end
 
   def create
+    lesson = Lesson.find(params[:lesson_id])
 
+    if lesson.lesson_words.create!(lesson_word_params)
+      redirect_to new_lesson_lesson_word_path(lesson)
+    else
+      abort
+    end
+  end
+
+  private
+  def lesson_word_params
+    params.require(:lesson_word).permit(:word_id, :word_answer_id)
   end
 end
