@@ -2,11 +2,10 @@ class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
 
   def index
-    @user = User.find(current_user.id)
     @users = User.paginate(page: params[:page], per_page: 10)
-    @lesson_users = Lesson.where(user_id: current_user.id)
+
     @word_count = 0
-    @lesson_users.each do |lesson|
+    current_user.lessons.each do |lesson|
       words = lesson.category.words
       @word_count += words.count
     end
@@ -14,7 +13,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @lessons_learned = Lesson.where(user_id: @user.id)
     @lesson_users = Lesson.where(user_id: @user.id)
                           .paginate(page: params[:page], per_page: 10)
     # 習得言語数の所得
@@ -23,6 +21,7 @@ class UsersController < ApplicationController
       words = lesson.category.words
       @word_count += words.count
     end
+
     @category = Category.all
   end
 
