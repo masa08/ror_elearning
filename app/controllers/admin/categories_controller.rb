@@ -23,7 +23,6 @@ class Admin::CategoriesController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def edit
@@ -38,7 +37,6 @@ class Admin::CategoriesController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   def destroy
