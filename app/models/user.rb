@@ -2,7 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   mount_uploader :image, ImageUploader
   before_save { self.email = email.downcase }
-  has_many :lesson, dependent: :destroy
+  has_many :lessons, dependent: :destroy
   has_many :lesson_words, dependent: :destroy
 
   # active relationship

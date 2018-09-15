@@ -1,36 +1,36 @@
 <%= render 'layouts/header' %>
 <div class="container pt50">
     <div class="row">
-      <div class="categories_all col-lg-12 text-center">
-        <h2 class="text-center wf-mplus1p mb-4 gradient-border font-weight-light">Results</h2>
-        <h2>Lesson:<%= @category.title %></h2>
-        <p class="result_des">Percentage of correct answers</p>
-        <h2 class="result"><%= @correct %>/<%= @lesson_words.count %></h2>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th>Content</th>
-                        <th>Your choice</th>
-                        <th>Result</th>
-                    </tr>
-                </thead>
-                <% @lesson_words.each do |lesson_word| %>
-                <tbody>
-                    <tr>
-                        <th><%= lesson_word.word.content %></th>
-                        <th><%= lesson_word.word_answer.content %></th>
-                        <% if lesson_word.word_answer.correct == true %>
-                            <th>◯</th>
-                        <% else %>
-                            <th>×</th>
-                        <% end %>
-                    </tr>
-                </tbody>
-                <% end %>
-            </table>
+        <div class="categories_all col-lg-12 text-center">
+            <h2 class="text-center wf-mplus1p mb-4 gradient-border font-weight-light">Results</h2>
+            <h2>Lesson:<%= @lesson.category.title %></h2>
+            <p class="result_des">Percentage of correct answers</p>
+            <h2 class="result"><%= @correct %>/<%= @lesson.lesson_words.count %></h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Content</th>
+                            <th>Your choice</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <% @lesson.lesson_words.each do |lesson_word| %>
+                    <tbody>
+                        <tr>
+                            <th><%= lesson_word.word.content %></th>
+                            <th><%= lesson_word.word_answer.content %></th>
+                            <% if lesson_word.word_answer.correct == true %>
+                                <th>◯</th>
+                            <% else %>
+                                <th>×</th>
+                            <% end %>
+                        </tr>
+                    </tbody>
+                    <% end %>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
 </div>
 <%= render 'layouts/footer' %>

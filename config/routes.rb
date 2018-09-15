@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # About lessons
   resources :lessons, only: [:index, :show, :create] do
-      resources :lesson_words, only: [:show, :create]
+      resources :lesson_words, only: [:show, :new, :create]
   end
 
   # About words
