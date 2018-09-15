@@ -7,11 +7,11 @@
         <div class="col-lg-4">
             <div class="user_details">
                 <div class="thumbnail">
-                    <%= image_tag @user.image.url, class: "user_image" %>
+                    <%= image_tag current_user.image.url, class: "user_image" %>
                 </div>
-                <p class="sidebar_content">Name: <%= @user.name  %></p>
-                <p class="sidebar_content">Email: <%= @user.email  %></p>
-                <p class="sidebar_content">lessons: <%= @lesson_users.count %></p>
+                <p class="sidebar_content">Name: <%= current_user.name  %></p>
+                <p class="sidebar_content">Email: <%= current_user.email  %></p>
+                <p class="sidebar_content">lessons: <%= current_user.lessons.count %></p>
                 <p class="sidebar_content">Words_Numbers: <%= @word_count %></p>
             </div>
         </div>
