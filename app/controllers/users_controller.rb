@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, except: [:new, :create]
+
   def index
     @user = User.find(current_user.id)
     @users = User.paginate(page: params[:page], per_page: 10)
@@ -74,6 +76,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :image_cache)
   end
-
 
 end
