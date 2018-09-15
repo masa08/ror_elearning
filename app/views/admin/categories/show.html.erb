@@ -30,13 +30,11 @@
                                     <% ii = 1 %>
                                     <!-- choices -->
                                     <% word.word_answers.each do |answer| %>
-                                        <% if ii > 4 %>
-                                          <% ii = 1 %>
-                                        <% end %>
+                                        <% ii = 1 if ii > 4 %>
                                         <%= ii %>：<%= answer.content %>
-                                          <% if answer.correct == true %>
-                                              : Answer
-                                          <% end %>
+                                            <% if answer.correct == true %>
+                                                : Answer
+                                            <% end %>
                                         <br>
                                         <% ii += 1 %>
                                     <% end %>
