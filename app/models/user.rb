@@ -19,6 +19,7 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
   has_many :lessons, dependent: :destroy
   has_many :lesson_words, dependent: :destroy
+  has_many :activities, dependent: :destroy
 
   # active relationship
   has_many :active_relationships, class_name: "Relationship",
@@ -49,10 +50,8 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  def feed
-    following_ids  = "SELECT followed_id FROM relationships
-                      WHERE follower_id = :user_id"
-    Lesson.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+  def activity_feed
+    Activity.where("user_id IN (?) OR user_id = ?", following_ids, id)
   end
 
   def follow(other_user)

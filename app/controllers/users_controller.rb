@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @activities = Activity.where(user_id: @user.id)
     @lesson_users = Lesson.where(user_id: @user.id)
                           .paginate(page: params[:page], per_page: 10)
     # 習得言語数の所得

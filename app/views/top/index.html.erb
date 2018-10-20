@@ -32,19 +32,32 @@
                 <div class="col-lg-8">
                     <div class="user_activity">
                         <h2 class="text-center wf-mplus1p mb-4 gradient-border font-weight-light">Activities</h2>
-                        <% @feeds.each do |feed| %>
-                            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                                <div class="card-body">
-                                    <div class="col-lg-4 left">
-                                        <%= image_tag feed.user.image.url, class: "user_image_top" %>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <p class="card-text"><%= feed.user.name %> finished <%= feed.category.title %></p>
-                                        <p><%= feed.created_at %></p>
+                            <% @activities.each do |activity| %>
+                                <div class="card mb-4 box-shadow">
+                                    <div class="media mb-4">
+                                        <div class="media-body ml-2">
+                                            <% if activity.action.is_a?(Relationship) %>
+                                                <% relationship = activity.action %>
+                                                <%= image_tag activity.user.image.url, class: "user_image", style: "width:30px; height:30px;" %>
+                                                <%= activity.user.name %>
+                                                followed
+                                                <%= link_to(    relationship.followed.name,
+                                                                relationship.followed,
+                                                                class: 'badge badge-secondary') %>
+                                            <% elsif activity.action.is_a?(Lesson) %>
+                                                <% lesson = activity.action %>
+                                                <%= image_tag activity.user.image.url, class: "user_image", style: "width:30px; height:30px;" %>
+                                                <%= activity.user.name %>
+                                                learned
+                                                in <%= link_to lesson.category.title, lesson, class: 'badge badge-primary' %>
+                                            <% end %>
+                                            <div>
+                                                <small class="text-muted"><%= time_ago_in_words(activity.created_at) %> ago</small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <% end %>
+                            <% end %>
                         <%= will_paginate @feeds, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer%>
                     </div>
                 </div>

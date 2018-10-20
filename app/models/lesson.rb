@@ -10,9 +10,17 @@
 #
 
 class Lesson < ApplicationRecord
+  after_save :store_activity
+
   belongs_to :user
   belongs_to :category
   has_many :lesson_words, dependent: :destroy
   has_many :word_answers, through: :lesson_words, dependent: :destroy
   has_many :words, through: :lesson_words, dependent: :destroy
+  has_one :activity, as: :action, dependent: :destroy
+
+  private
+  def store_activity
+    create_activity(user_id: user.id)
+  end
 end

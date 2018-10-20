@@ -37,22 +37,34 @@
                               aria-valuemax="100"><%= @user.lessons.count.to_f / @category.count.to_f * 100 %>%</div>
                         </div>
                     </div>
-                <% @user.lessons.each do |lesson| %>
-                <div class="col-md-12">
-                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                        <div class="card-body">
-                            <div class="col-lg-4 left">
-                                <%= image_tag lesson.user.image.url, class: "user_image_small" %>
-                            </div>
-                            <div class="card-text col-md-8">
-                                <p class="card-text"><%= lesson.user.name %> finished <%= lesson.category.title %></p>
-                                <p><%= lesson.created_at %></p>
+                    <% @activities.each do |activity| %>
+                        <div class="card mb-4 box-shadow">
+                            <div class="media mb-4">
+                                <div class="media-body ml-2">
+                                    <% if activity.action.is_a?(Relationship) %>
+                                        <% relationship = activity.action %>
+                                        <%= image_tag activity.user.image.url, class: "user_image", style: "width:30px; height:30px;" %>
+                                        <%= activity.user.name %>
+                                        followed
+                                        <%= link_to(    relationship.followed.name,
+                                                        relationship.followed,
+                                                        class: 'badge badge-secondary') %>
+                                    <% elsif activity.action.is_a?(Lesson) %>
+                                        <% lesson = activity.action %>
+                                        <%= image_tag activity.user.image.url, class: "user_image", style: "width:30px; height:30px;" %>
+                                        <%= activity.user.name %>
+
+                                        learned
+                                        in <%= link_to lesson.category.title, lesson, class: 'badge badge-primary' %>
+                                    <% end %>
+                                    <div>
+                                        <small class="text-muted"><%= time_ago_in_words(activity.created_at) %> ago</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            <% end %>
-            <%= will_paginate @lesson_users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer%>
+                    <% end %>
+                <%= will_paginate @lesson_users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer%>
             </div>
         </div>
     </div>
