@@ -59,7 +59,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   # Check rule of code
-  gem 'rubocop'
+  # gem "rubocop"
   #  Add database structure info to each file
   gem 'annotate'
 end
