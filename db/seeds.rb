@@ -38,7 +38,8 @@ categories.each do |category|
         word.word_answers.build(content: Faker::Lorem.word)
       end
     end
-
     word.save!
   end
 end
+
+puts "Success!"

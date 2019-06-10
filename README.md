@@ -23,4 +23,4 @@ $ rails db:seed
 2. Access to localhost:3000
 
 ## Why I made this app
-I made this app at 2018/6 as traning project before joining a job in Phollipines.
+I made this app at 2018/6 as traning project before joining a job in Phillipines.
